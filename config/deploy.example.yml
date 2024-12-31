@@ -7,7 +7,7 @@ image: staringskyward/kamarust
 # Deploy to these servers.
 servers:
   web:
-    - 100.68.108.119
+    - 192.168.1.2
   # job:
   #   hosts:
   #     - 192.168.0.1
@@ -19,7 +19,7 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption. 
 proxy: 
   ssl: true
-  host: ip-185-213-121-9.cloud.geekservers.net
+  host: yourapp.example.com
   # Proxy connects to your container on port 80 by default.
   # app_port: 3000
 
@@ -27,7 +27,7 @@ proxy:
 registry:
   # Specify the registry server, if you're not using Docker Hub
   # server: registry.digitalocean.com / ghcr.io / ...
-  username: staringskyward
+  username: kamarust
 
   # Always use an access token rather than real password (pulled from .kamal/secrets).
   password:

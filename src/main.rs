@@ -4,10 +4,11 @@ use warp::Filter;
 static BODY: &str = r#"
 <html>
     <head>
-        <title>Rust Web App Deployed with Kamal</title>
+        <title>Example Rust Web App Deployed with Kamal</title>
     </head>
     <body>
         <h1>Hello, World!</h1>
+        <p>Version 0.1</p>
     </body>
 </html>
 "#;
@@ -19,5 +20,5 @@ async fn main() {
         warp::reply::html(BODY)
     });
 
-    warp::serve(routes).run(([0, 0, 0, 0], 80)).await;
+    warp::serve(routes).run(([0, 0, 0, 0], 3000)).await;
 }
