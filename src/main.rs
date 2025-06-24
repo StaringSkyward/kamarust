@@ -9,7 +9,7 @@ static BODY: &str = r#"
     </head>
     <body>
         <h1>Hello, World!</h1>
-        <p>Version 0.2</p>
+        <p>Version 0.3</p>
     </body>
 </html>
 "#;
@@ -19,11 +19,17 @@ async fn hello() -> impl Responder {
     HttpResponse::Ok().body(BODY)
 }
 
+#[get("/up")]
+async fn up() -> impl Responder {
+    HttpResponse::Ok()
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     env_logger::init_from_env(Env::default().default_filter_or("info"));
     HttpServer::new(|| {
         App::new()
+            .service(up) // Kamal healthcheck endpoint
             .service(hello)
             .wrap(Logger::default())
 
