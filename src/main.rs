@@ -9,10 +9,18 @@ static BODY: &str = r#"
     </head>
     <body>
         <h1>Hello, World!</h1>
-        <p>Version 0.3</p>
+        <p>Version 0.4</p>
     </body>
 </html>
 "#;
+
+#[get("/favicon.ico")]
+async fn favicon() -> impl Responder {
+    let icon = include_bytes!("../assets/favicon-16x16.png");
+    HttpResponse::Ok()
+        .content_type("image/png")
+        .body(icon.as_slice())
+}
 
 #[get("/")]
 async fn hello() -> impl Responder {
@@ -31,6 +39,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .service(up) // Kamal healthcheck endpoint
             .service(hello)
+            .service(favicon)
             .wrap(Logger::default())
 
 
